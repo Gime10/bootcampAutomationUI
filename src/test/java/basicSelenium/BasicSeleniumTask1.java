@@ -65,7 +65,7 @@ public class BasicSeleniumTask1 {
 		// update
          String  newName="TaskUpdated";
 		driver.findElement(By.xpath(" //div[text()='"+taskName+"' and @class='ItemContentDiv'] ")).click();
-		Thread.sleep(4000);
+		Thread.sleep(1000);
 
 		//driver.findElement(By.id("ItemEditTextbox")).click();
 		driver.findElement(By.id("ItemEditTextbox")).sendKeys(newName);
