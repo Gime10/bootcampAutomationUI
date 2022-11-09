@@ -12,6 +12,7 @@ public class Chrome implements IBrowser{
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
         return driver;
     }
 }

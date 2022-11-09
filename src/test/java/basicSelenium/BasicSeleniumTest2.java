@@ -8,15 +8,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.util.Date;
-import java.util.NoSuchElementException;
 
-public class BasicSeleniumTest {
+public class BasicSeleniumTest2 {
 
     WebDriver driver;
 
@@ -28,6 +25,7 @@ public class BasicSeleniumTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         // page load wait
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
         driver.get("http://todo.ly/");
     }
 
@@ -50,11 +48,6 @@ public class BasicSeleniumTest {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         explicitWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
 
-//        FluentWait fluentWait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(15))
-//                        .pollingEvery(Duration.ofMillis(100))
-//                                .ignoring(NoSuchElementException.class);
-//        fluentWait.until(ExpectedConditions.elementToBeClickable(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")));
-
         Assertions.assertTrue(driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).isDisplayed()
                                     ,"ERROR login was incorrect");
 
@@ -67,28 +60,14 @@ public class BasicSeleniumTest {
         int actualResult=driver.findElements(By.xpath(" //td[text()='"+nameProject+"'] ")).size();
         Assertions.assertTrue(actualResult >= 1
                 ,"ERROR The project was not created");
+        // create task
+        driver.findElement(By.id("NewItemContentInput")).sendKeys("Eynar");
+        driver.findElement(By.id("NewItemAddButton")).click();
+        // create update
+        driver.findElement(By.xpath("//div[@class=\"ItemContentDiv\" and text()='Eynar']")).click();
+        driver.findElement(By.id("ItemEditTextbox")).clear();
+        driver.findElement(By.id("ItemEditTextbox")).sendKeys("Update\n");
+        Thread.sleep(5000);
 
-        nameProject="Update"+new Date().getTime();
-        // update
-        driver.findElement(By.xpath("//div[contains(@style,'block')]/img")).click();
-        driver.findElement(By.xpath("//ul[@id=\"projectContextMenu\"]//a[text()='Edit']")).click();
-        driver.findElement(By.xpath("//td/div/input[@id='ItemEditTextbox']")).clear();
-        driver.findElement(By.xpath("//td/div/input[@id='ItemEditTextbox']")).sendKeys(nameProject);
-        driver.findElement(By.xpath("//td/div/img[@id='ItemEditSubmit']")).click();
-        Thread.sleep(1000);
-        actualResult=driver.findElements(By.xpath(" //td[text()='"+nameProject+"'] ")).size();
-        Assertions.assertTrue(actualResult >= 1
-                ,"ERROR The project was not updated");
-
-        // delete
-        driver.findElement(By.xpath("//div[contains(@style,'block')]/img")).click();
-        driver.findElement(By.id("ProjShareMenuDel")).click();
-        driver.switchTo().alert().accept();
-        Thread.sleep(1000);
-
-
-        actualResult=driver.findElements(By.xpath(" //td[text()='"+nameProject+"'] ")).size();
-        Assertions.assertTrue(actualResult == 0
-                ,"ERROR The project was not removed");
     }
 }
