@@ -1,7 +1,10 @@
 package session;
 
 import browser.FactoryBrowser;
+import control.Iframe;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.xml.sax.Locator;
 import util.GetProperties;
 
 public class Session {

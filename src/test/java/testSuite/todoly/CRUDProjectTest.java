@@ -3,6 +3,7 @@ package testSuite.todoly;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import session.Session;
+import util.GetProperties;
 
 import java.util.Date;
 
@@ -12,6 +13,8 @@ public class CRUDProjectTest extends TestBase{
     public void verifyCRUDProject(){
         String projectCreated="MOJIX"+new Date().getTime();
         String projectUpdated="QA"+new Date().getTime();
+		String user= GetProperties.getInstance().getUser();
+		String password=GetProperties.getInstance().getPwd();
 
         mainPage.loginLabel.click();
         loginSection.emailTxtBox.setText(user);

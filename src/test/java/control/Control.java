@@ -16,7 +16,7 @@ public class Control {
         this.locator=locator;
     }
 
-    protected void find(){
+	protected void find(){
         control= Session.getInstance().getBrowser().findElement(this.locator);
     }
 
@@ -44,5 +44,6 @@ public class Control {
         WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(5));
         explicitWait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(this.locator)));
     }
+
 
 }

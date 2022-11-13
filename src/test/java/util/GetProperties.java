@@ -8,7 +8,7 @@ public class GetProperties {
      private static GetProperties getProperties= null;
      private String browser;
      private String host;
-     private String user;
+	 private String user;
      private String pwd;
 
      private GetProperties(){
@@ -42,7 +42,6 @@ public class GetProperties {
     public String getHost() {
         return host;
     }
-
     public String getUser() {
         return user;
     }

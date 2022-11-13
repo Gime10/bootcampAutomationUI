@@ -16,8 +16,8 @@ public class TestBase {
 
      SignUpSection signUpSection= new SignUpSection();
      // todo property file
-     String user=GetProperties.getInstance().getUser();
-     String password =GetProperties.getInstance().getPwd();
+     //String user=GetProperties.getInstance().getUser();
+     //String password =GetProperties.getInstance().getPwd();
 
 
      @BeforeEach
