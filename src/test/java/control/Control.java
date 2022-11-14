@@ -1,7 +1,10 @@
 package control;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import session.Session;
@@ -10,6 +13,7 @@ import java.time.Duration;
 
 public class Control {
     protected WebElement control;
+	public WebDriver driver;
     protected By locator;
 
     public Control(By locator){
@@ -39,6 +43,12 @@ public class Control {
         return this.control.getText();
     }
 
+	public void hover(){
+		this.find();
+		driver =Session.getInstance().getBrowser();
+		Actions action =new Actions(driver);
+		action.moveToElement(this.control).perform();
+	}
 
     public void waitControlIsNotInThePage(){
         WebDriverWait explicitWait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(5));
