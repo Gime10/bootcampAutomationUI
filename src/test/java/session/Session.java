@@ -6,12 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.xml.sax.Locator;
 import util.GetProperties;
+import util.GetPropertiesTickTick;
 
 public class Session {
      private static Session instance=null;
      private WebDriver browser;
      private Session(){
-         browser= FactoryBrowser.make(GetProperties.getInstance().getBrowser()).create();
+         browser= FactoryBrowser.make(GetPropertiesTickTick.getInstance().getBrowser()).create();
      }
 
      public static Session getInstance(){
@@ -32,4 +33,5 @@ public class Session {
     public void acceptAlert() {
         browser.switchTo().alert().accept();
     }
+
 }

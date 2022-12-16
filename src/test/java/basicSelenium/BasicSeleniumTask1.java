@@ -71,10 +71,6 @@ public class BasicSeleniumTask1 {
 		driver.findElement(By.id("ItemEditTextbox")).sendKeys(newName);
 		Thread.sleep(1000);
 		driver.findElement(By.id("ItemEditTextbox")).sendKeys(Keys.ENTER);
-		//String actual=driver.findElement(By.xpath("//div[@class='ItemContentDiv' and @style='color: rgb(0, 0, 0);'])");
-		//Thread.sleep(1000);
-		//System.out.println("El texto actual es :"+actual);
-		//Assertions.assertTrue(driver.findElement(By.id("ItemEditTextbox")).getText() == ""
-		//		, "ERROR The project was not removed");*/
+
 	}
 }
